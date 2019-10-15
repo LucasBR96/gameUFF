@@ -143,9 +143,11 @@ class Player( PPlay.sprite.Sprite ):
           
           elif flag == DADIR:
                self.x = plataforma.x + plataforma.width
+               self.vx = 0
           
           elif flag == DAESQ:
                self.x = plataforma.x - self.width
+               self.vx = 0
 
      def lidar_colisao_inimigo( self , monstro , flag ):
           pass
