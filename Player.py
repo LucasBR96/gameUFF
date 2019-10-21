@@ -109,25 +109,27 @@ class Player( PPlay.sprite.Sprite ):
 
           '''
 
-          if self.vy == 0:
-               if self.x < outro.x:
-                    result = DAESQ
-               else:
-                    result = DADIR
-          else:
-               pos1 = outro.x - self.width//2
-               pos2 = outro.x + outro.width + self.width//2
+          centro_x = ( self.x + self.width )//2
+          centro_y = ( self.y + self.height )//2
+          pos1 = outro.x
+          pos2 = outro.x + outro.width
 
-               if pos1 < self.x < pos2:
-                    if self.vy > 0: result = DECIMA #caindo
-                    else: result = DEBAIXO
+          a = ( centro_x >= pos1 )
+          b = ( pos2 >= centro_x )
+          c = ( outro.y > centro_y )
 
-               elif self.x < outro.x :
-                    result = DAESQ
+          if a and b and c:
+               result = DECIMA
+          
+          elif a and b:
+               result = DEBAIXO
 
-               else:
-                    result = DADIR
-
+          elif not a:
+               result = DAESQ
+          
+          elif not b:
+               result = DADIR
+          
           return result
           
      def lidar_colisao_plat( self , plataforma , flag ):
